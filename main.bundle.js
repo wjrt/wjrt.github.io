@@ -229,8 +229,42 @@ var ClientsComponent = /** @class */ (function () {
             return this.clients;
         }
         else {
-            return this.clients.filter(function (c) { return c.general.firstName.toLowerCase().includes(_this.currentFilterCriteria.toLowerCase()); });
+            return this.clients.filter(function (c) { return _this.searchFunction(c); });
         }
+    };
+    ClientsComponent.prototype.searchFunction = function (c) {
+        var searchCriteriaLowerCased = this.currentFilterCriteria.toLowerCase();
+        if (c.general.firstName.toLowerCase().includes(searchCriteriaLowerCased)) {
+            return true;
+        }
+        if (c.general.lastName.toLowerCase().includes(searchCriteriaLowerCased)) {
+            return true;
+        }
+        if (c.job.company.toLowerCase().includes(searchCriteriaLowerCased)) {
+            return true;
+        }
+        if (c.job.title.toLowerCase().includes(searchCriteriaLowerCased)) {
+            return true;
+        }
+        if (c.contact.email.toLowerCase().includes(searchCriteriaLowerCased)) {
+            return true;
+        }
+        if (c.contact.phone.toLowerCase().includes(searchCriteriaLowerCased)) {
+            return true;
+        }
+        if (c.address.street.toLowerCase().includes(searchCriteriaLowerCased)) {
+            return true;
+        }
+        if (c.address.city.toLowerCase().includes(searchCriteriaLowerCased)) {
+            return true;
+        }
+        if (c.address.zipCode.toLowerCase().includes(searchCriteriaLowerCased)) {
+            return true;
+        }
+        if (c.address.country.toLowerCase().includes(searchCriteriaLowerCased)) {
+            return true;
+        }
+        return false;
     };
     ClientsComponent.prototype.showDetails = function (client) {
         this.selectedClientCard.emit(client);
